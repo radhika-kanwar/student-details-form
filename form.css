@@ -1,0 +1,96 @@
+body {
+    font-family: "Times New Roman", Times, serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+  }
+  
+  form {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  fieldset {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  
+  legend {
+    font-weight: bold;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .form-group input[type="text"],
+  .form-group input[type="date"],
+  .form-group input[type="email"],
+  .form-group select {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+  }
+  
+  .form-group input[type="radio"] {
+    margin-right: 5px;
+  }
+  
+  .form-actions {
+    text-align: right;
+  }
+  
+  .form-actions button {
+    padding: 10px 20px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .form-actions button[type="submit"] {
+    background-color: #008080;
+    color: #fff;
+  }
+  
+  .form-actions button[type="reset"] {
+    background-color: #ff6f61;
+    color: #fff;
+  }
+  
+  .error-message {
+    color: #e57373;
+    font-size: 0.875em;
+    margin-top: 5px;
+    display: block;
+  }
+  
+  .form-actions button:hover {
+    opacity: 0.9;
+  }
+  
+  .form-actions button[type="submit"]:hover {
+    background-color: #004d40;
+  }
+  
+  .form-actions button[type="reset"]:hover {
+    background-color: #e04f43;
+  }
+  
+  .form-group input:focus,
+  .form-group select:focus {
+      border-color: #008080;
+      outline: none;
+      box-shadow: 0 0 5px rgba(0, 128, 128, 0.2);
+  }
