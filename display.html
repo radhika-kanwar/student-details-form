@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Display Student Information</title>
+    <link rel="stylesheet" href="display.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h2><strong>Student Information</strong></h2>
+      <div class="data-item">
+        <strong>Registration Number:</strong> <span id="regDisplay"></span>
+      </div>
+      <div class="data-item">
+        <strong>Name:</strong> <span id="nameDisplay"></span>
+      </div>
+      <div class="data-item">
+        <strong>Email:</strong> <span id="emailDisplay"></span>
+      </div>
+      <div class="data-item">
+        <strong>Contact Number:</strong> <span id="phoneDisplay"></span>
+      </div>
+      <div class="data-item">
+        <strong>Date of Birth:</strong> <span id="dobDisplay"></span>
+      </div>
+      <div class="data-item">
+        <strong>Gender:</strong> <span id="genderDisplay"></span>
+      </div>
+      <div class="data-item">
+        <strong>State:</strong> <span id="stateDisplay"></span>
+      </div>
+      <div class="data-item">
+        <strong>City:</strong> <span id="cityDisplay"></span>
+      </div>
+      <div class="data-item">
+        <strong>Specialization:</strong>
+        <span id="specializationDisplay"></span>
+      </div>
+      <div class="data-item">
+        <strong>Father's Name:</strong> <span id="fnameDisplay"></span>
+      </div>
+      <div class="data-item">
+        <strong>Father's Number:</strong>
+        <span id="fnumberDisplay"></span>
+      </div>
+      <div class="data-item">
+        <strong>Mother's Name:</strong> <span id="mnameDisplay"></span>
+      </div>
+      <div class="data-item">
+        <strong>Mother's Number:</strong>
+        <span id="mnumberDisplay"></span>
+      </div>
+      <a href="form.html">Go Back</a>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Function to retrieve and display data
+        function displayData() {
+          const fields = [
+            { id: "regDisplay", key: "regNum" },
+            { id: "nameDisplay", key: "name" },
+            { id: "phoneDisplay", key: "phoneNumber" },
+            { id: "emailDisplay", key: "email" },
+            { id: "dobDisplay", key: "dob" },
+            { id: "genderDisplay", key: "gender" },
+            { id: "stateDisplay", key: "state" },
+            { id: "cityDisplay", key: "city" },
+            { id: "specializationDisplay", key: "specialization" },
+            { id: "fnameDisplay", key: "fatherName" },
+            { id: "fnumberDisplay", key: "fatherPhone" },
+            { id: "mnameDisplay", key: "motherName" },
+            { id: "mnumberDisplay", key: "motherPhone" },
+          ];
+
+          fields.forEach((field) => {
+            const element = document.getElementById(field.id);
+            const value = localStorage.getItem(field.key);
+            element.textContent = value || "N/A";
+          });
+        }
+
+        // Initialize the display data function
+        displayData();
+      });
+    </script>
+  </body>
+</html>
