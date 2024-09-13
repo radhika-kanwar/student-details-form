@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Information</title>
+    <link rel="stylesheet" href="form.css" />
+    <script src="validation.js" defer></script>
+  </head>
+
+  <body>
+    <h2 style="text-align: center">OFFICIAL INFORMATION</h2>
+
+    <form action="display.html" method="get">
+      <fieldset>
+        <legend>Student Information</legend>
+
+        <div class="form-group">
+          <label for="reg">Registration Number:</label>
+          <input type="text" name="reg" id="reg" required />
+        </div>
+
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" name="name" id="name" required />
+        </div>
+
+        <div class="form-group">
+          <label for="number">Contact Number:</label>
+          <input type="text" name="number" id="number" required />
+          <span id="phoneError" class="error-message"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" name="email" id="email" required />
+          <span id="emailError" class="error-message"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="dob">Date of Birth:</label>
+          <input type="date" name="dob" id="dob" required />
+        </div>
+
+        <div class="form-group">
+          <span>Gender: </span>
+          <label
+            ><input
+              type="radio"
+              name="gender"
+              value="Male"
+              required
+            />Male</label
+          >
+          <label
+            ><input type="radio" name="gender" value="Female" />Female</label
+          >
+          <label
+            ><input type="radio" name="gender" value="Prefer Not Say" />Prefer
+            Not Say</label
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="state">State:</label>
+          <input type="text" name="state" id="state" required />
+        </div>
+
+        <div class="form-group">
+          <label for="city">City:</label>
+          <input type="text" name="city" id="city" required />
+        </div>
+
+        <div class="form-group">
+          <label for="specialization">Specialization:</label>
+          <select name="specialization" id="specialization" required>
+            <option value="Artificial Intelligence">
+              Artificial Intelligence
+            </option>
+            <option value="Cloud Computing">Cloud Computing</option>
+            <option value="Data Science">Data Science</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div id="other-specialization" class="form-group" style="display: none">
+          <label for="other-specialization">Please specify:</label>
+          <input
+            type="text"
+            name="other-specialization-text"
+            id="other-specialization-text"
+          />
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Parent Information</legend>
+        <div class="form-group">
+          <label for="father">Father's Name:</label>
+          <input type="text" name="father" id="father" required />
+        </div>
+
+        <div class="form-group">
+          <label for="f-number">Father's Contact Number:</label>
+          <input type="text" name="f-number" id="f-number" required />
+          <span id="f-phoneError" class="error-message"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="mother">Mother's Name:</label>
+          <input type="text" name="mother" id="mother" required />
+        </div>
+
+        <div class="form-group">
+          <label for="m-number">Mother's Contact Number:</label>
+          <input type="text" name="m-number" id="m-number" required />
+          <span id="m-phoneError" class="error-message"></span>
+        </div>
+      </fieldset>
+
+      <div class="form-actions">
+        <button type="submit">OK</button>
+        <button type="reset">CANCEL</button>
+      </div>
+    </form>
+  </body>
+</html>
