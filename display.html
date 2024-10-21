@@ -51,12 +51,11 @@
         <strong>Mother's Number:</strong>
         <span id="mnumberDisplay"></span>
       </div>
-      <a href="form.html">Go Back</a>
+      <a href="index.html">Go Back</a>
     </div>
 
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        // Function to retrieve and display data
         function displayData() {
           const fields = [
             { id: "regDisplay", key: "regNum" },
@@ -80,8 +79,7 @@
             element.textContent = value || "N/A";
           });
         }
-
-        // Initialize the display data function
+        
         displayData();
       });
     </script>
