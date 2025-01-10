@@ -59,6 +59,14 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelector('form').insertAdjacentHTML('afterbegin', progressHTML);
   
     const form = document.querySelector('form');
+    const resetButton = form.querySelector('button[type="reset"]');
+    resetButton.addEventListener('click', function() {
+        const progressBar = document.querySelector('.progress-bar');
+        const progressText = document.querySelector('.progress-text');
+        progressBar.style.width = '0%';
+        progressText.textContent = '0% Complete'; 
+    });
+
     form.addEventListener('input', updateProgress);
     form.addEventListener('input', autoSaveForm);
   
