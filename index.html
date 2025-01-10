@@ -3,47 +3,55 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Student Information</title>
-    <link rel="stylesheet" href="form.css" />
-    <script src="validation.js" defer></script>
+    <title>Student Information System</title>
+    <link rel="stylesheet" href="assets/css/form.css" />
+    <script src="assets/js/validation.js" defer></script>
+    <script src="assets/js/progress-bar.js" defer></script>
+    <script src="assets/js/dark-mode.js" defer></script>
   </head>
 
   <body>
-    <h2 style="text-align: center">OFFICIAL INFORMATION</h2>
+    <h2 style="text-align: center">Student Information System</h2>
 
     <form action="display.html" method="get">
       <fieldset>
         <legend>Student Information</legend>
 
         <div class="form-group">
-          <label for="reg">Registration Number:</label>
+          <label for="image">Upload an Image: <span style="color: maroon; font-size: small;">*</span> <label>
+          <input type="file" id="image" accept="image/*" required/>
+        </div>
+
+        <div class="form-group">
+          <label for="reg" class="required">Registration Number:</label>
           <input type="text" name="reg" id="reg" required />
         </div>
 
         <div class="form-group">
-          <label for="name">Name:</label>
+          <label for="name" class="required">Name:</label>
           <input type="text" name="name" id="name" required />
+          <span id="nameError" class="error-message"></span>
         </div>
 
         <div class="form-group">
-          <label for="number">Contact Number:</label>
+          <label for="number" class="required">Contact Number:</label>
           <input type="text" name="number" id="number" required />
           <span id="phoneError" class="error-message"></span>
         </div>
 
         <div class="form-group">
-          <label for="email">Email:</label>
+          <label for="email" class="required">Email:</label>
           <input type="email" name="email" id="email" required />
           <span id="emailError" class="error-message"></span>
         </div>
 
         <div class="form-group">
-          <label for="dob">Date of Birth:</label>
+          <label for="dob" class="required">Date of Birth:</label>
           <input type="date" name="dob" id="dob" required />
         </div>
 
         <div class="form-group">
-          <span>Gender: </span>
+          <span class="required">Gender: </span>
           <label
             ><input
               type="radio"
@@ -62,66 +70,84 @@
         </div>
 
         <div class="form-group">
-          <label for="state">State:</label>
+          <label for="state" class="required">State:</label>
           <input type="text" name="state" id="state" required />
         </div>
 
         <div class="form-group">
-          <label for="city">City:</label>
+          <label for="city" class="required">City:</label>
           <input type="text" name="city" id="city" required />
         </div>
 
         <div class="form-group">
-          <label for="specialization">Specialization:</label>
-          <select name="specialization" id="specialization" required>
-            <option value="Artificial Intelligence">
-              Artificial Intelligence
+          <label for="degree" class="required">Degree:</label>
+          <select name="degree" id="degree" onchange="updateMajor()" required>
+            <option value="" disabled selected>Select the degree</option>
+            <option value="Bachelor of Technology">
+              Bachelor of Technology
             </option>
-            <option value="Cloud Computing">Cloud Computing</option>
-            <option value="Data Science">Data Science</option>
-            <option value="Other">Other</option>
+            <option value="Bachelor of Business Administration">
+              Bachelor of Business Administration
+            </option>
+            <option value="Bachelor of Medicine">Bachelor of Medicine</option>
+            <option value="Bachelor of Arts">Bachelor of Arts</option>
           </select>
         </div>
 
-        <div id="other-specialization" class="form-group" style="display: none">
-          <label for="other-specialization">Please specify:</label>
-          <input
-            type="text"
-            name="other-specialization-text"
-            id="other-specialization-text"
-          />
+        <script src="assets/js/update-majors.js"></script>
+
+        <div class="form-group">
+          <label for="major" class="required">Major:</label>
+          <select name="major" id="major" required>
+            <option value="" disabled selected>Select the major</option>
+          </select>
+        </div>
+
+        <div id="other-major" class="form-group" style="display: none">
+          <label for="other-major">Please specify your major:</label>
+          <input type="text" name="other-major-text" id="other-major-text" />
         </div>
       </fieldset>
 
       <fieldset>
-        <legend>Parent Information</legend>
+        <legend>Parents Information</legend>
         <div class="form-group">
-          <label for="father">Father's Name:</label>
+          <label for="father" class="required">Father's Name:</label>
           <input type="text" name="father" id="father" required />
+          <span id="fNameError" class="error-message"></span>
         </div>
 
         <div class="form-group">
-          <label for="f-number">Father's Contact Number:</label>
+          <label for="f-number" class="required"
+            >Father's Contact Number:</label
+          >
           <input type="text" name="f-number" id="f-number" required />
-          <span id="f-phoneError" class="error-message"></span>
+          <span id="fPhoneError" class="error-message"></span>
         </div>
 
         <div class="form-group">
-          <label for="mother">Mother's Name:</label>
+          <label for="mother" class="required">Mother's Name:</label>
           <input type="text" name="mother" id="mother" required />
+          <span id="mNameError" class="error-message"></span>
         </div>
 
         <div class="form-group">
-          <label for="m-number">Mother's Contact Number:</label>
+          <label for="m-number" class="required"
+            >Mother's Contact Number:</label
+          >
           <input type="text" name="m-number" id="m-number" required />
-          <span id="m-phoneError" class="error-message"></span>
+          <span id="mPhoneError" class="error-message"></span>
         </div>
       </fieldset>
 
       <div class="form-actions">
-        <button type="submit">OK</button>
-        <button type="reset">CANCEL</button>
+        <button type="submit">Submit</button>
+        <button type="reset">Cancel</button>
       </div>
     </form>
+
+    <footer>
+      <p style="text-align: center">Created by RK | &copy; 2024</p>
+    </footer>
   </body>
 </html>
