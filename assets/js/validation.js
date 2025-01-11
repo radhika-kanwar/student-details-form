@@ -1,5 +1,5 @@
 function updateMajor() {
-  const degree = document.getElementById('degree').value;
+  const degree = document.getElementById('degree').value.trim();
   const majorSelect = document.getElementById('major');
   const otherMajorDiv = document.getElementById('other-major');
   
@@ -75,12 +75,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
   major.addEventListener('change', toggleOthermajor);
 
-  if (document.getElementById('degree').value) {
-    updateMajor();
-  }
-
   function validateName(name) {
-    const namePattern = /^[A-Za-z]+(?:[ A-Za-z'-.]*[A-Za-z])?$/;
+    const namePattern = /^[A-Za-z]+([\s'-]?[A-Za-z]+)*$/;
     return namePattern.test(name);
   }
   
@@ -112,13 +108,13 @@ document.addEventListener('DOMContentLoaded', function () {
   form.addEventListener('submit', function (event) {
     let valid = true;
 
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const phoneNumber = document.getElementById('number').value;
-    const nameF = document.getElementById('father').value;
-    const nameM = document.getElementById('mother').value;
-    const phoneNumberF = document.getElementById('f-number').value;
-    const phoneNumberM = document.getElementById('m-number').value;
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phoneNumber = document.getElementById('number').value.trim();
+    const nameF = document.getElementById('father').value.trim();
+    const nameM = document.getElementById('mother').value.trim();
+    const phoneNumberF = document.getElementById('f-number').value.trim();
+    const phoneNumberM = document.getElementById('m-number').value.trim();
   
     if (!validateName(name)) {
       nameError.textContent = 'Please enter a valid name. Only letters, spaces, hyphens, and apostrophes are allowed.';
@@ -172,16 +168,16 @@ document.addEventListener('DOMContentLoaded', function () {
     if (valid) {
       const formData = {
         'photo': uploadedImage,
-        'regNum': document.getElementById('reg').value,
+        'regNum': document.getElementById('reg').value.trim(),
         'name': name,
         'phoneNumber': phoneNumber,
         'email': email,
         'dob': document.getElementById('dob').value,
         'gender': form.querySelector('input[name="gender"]:checked').value,
-        'state': document.getElementById('state').value,
-        'city': document.getElementById('city').value,
+        'state': document.getElementById('state').value.trim(),
+        'city': document.getElementById('city').value.trim(),
         'degree': document.getElementById('degree').value,
-        'major': major.value === 'Other' ? otherMajorInput.value : major.value,
+        'major': major.value === 'Other' ? otherMajorInput.value.trim() : major.value,
         'fatherName': nameF,
         'fatherPhone': phoneNumberF,
         'motherName': nameM,
