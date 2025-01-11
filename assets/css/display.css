@@ -30,9 +30,29 @@ h2 {
   padding: 10px;
   border-bottom: 1px solid #e0e0e0;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   transition: background-color 0.3s ease;
+}
+
+@media screen and (max-width: 600px) {
+  .data-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+  
+  .container {
+    padding: 20px;
+    margin: 10px;
+    width: auto;
+  }
+  
+  .data-item span {
+    width: 100%;
+    word-break: break-word;
+  }
 }
 
 .data-item:hover {
