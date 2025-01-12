@@ -6,8 +6,8 @@
     <title>Student Information System</title>
     <link rel="stylesheet" href="assets/css/form.css" />
     <script src="assets/js/validation.js" defer></script>
-    <script src="assets/js/progress-bar.js" defer></script>
     <script src="assets/js/dark-mode.js" defer></script>
+    <script src="assets/js/progress-bar.js" defer></script>
   </head>
 
   <body>
@@ -18,13 +18,18 @@
         <legend>Student Information</legend>
 
         <div class="form-group">
-          <label for="image">Upload an Image: <span style="color: maroon; font-size: small;">*</span> <label>
-          <input type="file" id="image" accept="image/*" required/>
+          <label for="image"
+            >Upload an Image:
+            <span style="color: maroon; font-size: small">*</span>
+          </label>
+          <input type="file" id="image" accept="image/*" required />
+          <span id="imageError" class="error-message"></span>
         </div>
 
         <div class="form-group">
           <label for="reg" class="required">Registration Number:</label>
           <input type="text" name="reg" id="reg" required />
+          <span id="regError" class="error-message"></span>
         </div>
 
         <div class="form-group">
@@ -34,8 +39,8 @@
         </div>
 
         <div class="form-group">
-          <label for="number" class="required">Contact Number:</label>
-          <input type="text" name="number" id="number" required />
+          <label for="phone" class="required">Contact Number:</label>
+          <input type="text" name="phone" id="phone" required />
           <span id="phoneError" class="error-message"></span>
         </div>
 
@@ -48,6 +53,7 @@
         <div class="form-group">
           <label for="dob" class="required">Date of Birth:</label>
           <input type="date" name="dob" id="dob" required />
+          <span id="dobError" class="error-message"></span>
         </div>
 
         <div class="form-group">
@@ -102,7 +108,10 @@
         </div>
 
         <div id="other-major" class="form-group" style="display: none">
-          <label for="other-major">Please specify your major: <span style="color: maroon; font-size: small;">*</span></label>
+          <label for="other-major"
+            >Please specify your major:
+            <span style="color: maroon; font-size: small">*</span></label
+          >
           <input type="text" name="other-major-text" id="other-major-text" />
         </div>
       </fieldset>
@@ -110,30 +119,26 @@
       <fieldset>
         <legend>Parents Information</legend>
         <div class="form-group">
-          <label for="father" class="required">Father's Name:</label>
-          <input type="text" name="father" id="father" required />
+          <label for="fName" class="required">Father's Name:</label>
+          <input type="text" name="fName" id="fName" required />
           <span id="fNameError" class="error-message"></span>
         </div>
 
         <div class="form-group">
-          <label for="f-number" class="required"
-            >Father's Contact Number:</label
-          >
-          <input type="text" name="f-number" id="f-number" required />
+          <label for="fPhone" class="required">Father's Contact Number:</label>
+          <input type="text" name="fPhone" id="fPhone" required />
           <span id="fPhoneError" class="error-message"></span>
         </div>
 
         <div class="form-group">
-          <label for="mother" class="required">Mother's Name:</label>
-          <input type="text" name="mother" id="mother" required />
+          <label for="mName" class="required">Mother's Name:</label>
+          <input type="text" name="mName" id="mName" required />
           <span id="mNameError" class="error-message"></span>
         </div>
 
         <div class="form-group">
-          <label for="m-number" class="required"
-            >Mother's Contact Number:</label
-          >
-          <input type="text" name="m-number" id="m-number" required />
+          <label for="mPhone" class="required">Mother's Contact Number:</label>
+          <input type="text" name="mPhone" id="mPhone" required />
           <span id="mPhoneError" class="error-message"></span>
         </div>
       </fieldset>
