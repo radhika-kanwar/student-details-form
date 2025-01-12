@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     const themeToggle = document.createElement("button");
     themeToggle.className = "theme-toggle";
+    themeToggle.ariaLabel = "Toggle Dark Mode";
     themeToggle.innerHTML = "🌓";
 
     themeToggle.addEventListener("click", toggleDarkMode);
