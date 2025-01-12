@@ -1,9 +1,9 @@
 function updateMajor() {
-  const degree = document.getElementById('degree').value.trim();
+  const degree = document.getElementById('degree').value;
   const majorSelect = document.getElementById('major');
   const otherMajorDiv = document.getElementById('other-major');
   
-  majorSelect.innerHTML = '<option value="" disabled selected>Select an option</option>';
+  majorSelect.innerHTML = '<option value="" disabled selected>Select the major</option>';
   
   const majors = {
       'Bachelor of Technology': [
@@ -73,121 +73,186 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 
+  major.addEventListener('change', function() {
+    toggleOthermajor();
+    updateProgress();
+  });
+
+  otherMajorInput.addEventListener('input', function() {
+    updateProgress();
+  });
+
   major.addEventListener('change', toggleOthermajor);
+
+  function validateRegistrationNumber(reg) {
+    const regPattern = /^[A-Z]{2}\d{9}$/;
+    return regPattern.test(reg);
+}
 
   function validateName(name) {
     const namePattern = /^[A-Za-z]+([\s'-]?[A-Za-z]+)*$/;
-    return namePattern.test(name);
+    return namePattern.test(name) && name.length <= 50;
   }
   
   function validateEmail(email) {
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailPattern.test(email);
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailPattern.test(email) && email.length <= 254;
   }
   
   function validatePhoneNumber(phoneNumber) {
-    const phonePattern = /^\d{10}$/;
+    const phonePattern = /^(\+\d{1,3}[\s-]?)?\d{10}$/;
     return phonePattern.test(phoneNumber);
+  }
+
+  function validateDOB(dob) {
+    let birthDate = new Date(dob);
+    let today = new Date();
+    const minAge = 4; 
+    const maxAge = 100;
+    
+    let age = today.getFullYear() - birthDate.getFullYear();
+    let monthDiff = today.getMonth() - birthDate.getMonth();
+    
+    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+    
+    return age >= minAge && age <= maxAge;
   }
 
   let uploadedImage = null;
   const imageInput = document.getElementById('image');
+  
   imageInput.addEventListener('change', function(e) {
     const file = e.target.files[0];
+    const maxSize = 5 * 1024 * 1024;
+    const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
+    const imageError = document.getElementById('imageError');
+
     if (file) {
+      if (!allowedTypes.includes(file.type)) {
+        imageError.textContent = 'Please upload an image file (jpeg, jpg, or png).';
+        this.value = '';
+        updateProgress()
+        return false;
+      } else {
+        imageError.textContent = '';
+      }
+
+      if (file.size > maxSize) {
+        imageError.textContent = 'Please upload an image file smaller than 5MB.';
+        this.value = '';
+        updateProgress()
+        return false;
+      } else {
+        imageError.textContent = '';
+      }
+
       const reader = new FileReader();
       reader.onload = function(event) {
         uploadedImage = event.target.result;
       };
       reader.readAsDataURL(file);
+      updateProgress()
+      return true;  
     }
   });
 
   const form = document.querySelector('form');
-  
+
+  function validateField(field) {
+    const errorElement = document.getElementById(`${field.id}Error`);
+    if (!errorElement) return true;
+
+    switch(field.id) {
+      case 'reg':
+        if (!validateRegistrationNumber(field.value.trim())) {
+          errorElement.textContent = 'Please enter a valid registration number. Example: GF2023456789';
+          return false
+        } else {
+          errorElement.textContent = '';
+        }
+        break;
+      case 'name':
+      case 'fName':
+      case 'mName':
+        if (!validateName(field.value.trim())) {
+          errorElement.textContent = 'Please enter a valid name. Only 50 characters including letters, spaces, hyphens, and apostrophes are allowed.';
+          return false
+        } else {
+          errorElement.textContent = '';
+        }
+        break;
+      case 'phone':
+      case 'fPhone':
+      case 'mPhone':
+        if (!validatePhoneNumber(field.value.trim())) {
+          errorElement.textContent = 'Please enter a valid 10-digit phone number.';
+          return false;
+        } else {
+          errorElement.textContent = '';
+        }
+        break;
+      case 'email':
+        if (!validateEmail(field.value.trim())) {
+          errorElement.textContent = 'Please enter a valid email address.';
+          return false;
+        } else {
+          errorElement.textContent = '';
+        }
+        break;
+      case 'dob':
+        if (!validateDOB(field.value.trim())) {
+          errorElement.textContent = 'Invalid age.';
+          return false;
+        } else {
+          errorElement.textContent = '';
+        }
+        break;
+    }
+    return true;
+  }
+
+  const inputs = document.querySelectorAll('input[required], select[required]');
+  inputs.forEach(input => {
+    input.addEventListener('input', function() {
+      validateField(this);
+      updateProgress();
+    });
+  });
+
   form.addEventListener('submit', function (event) {
-    let valid = true;
+    let isValid = true;
 
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const phoneNumber = document.getElementById('number').value.trim();
-    const nameF = document.getElementById('father').value.trim();
-    const nameM = document.getElementById('mother').value.trim();
-    const phoneNumberF = document.getElementById('f-number').value.trim();
-    const phoneNumberM = document.getElementById('m-number').value.trim();
+    inputs.forEach(input => {
+      if (!validateField(input)) {
+        isValid = false;
+      }
+    });
   
-    if (!validateName(name)) {
-      nameError.textContent = 'Please enter a valid name. Only letters, spaces, hyphens, and apostrophes are allowed.';
-      valid = false;
-    } else {
-      nameError.textContent = '';
-    }
-
-    if (!validateEmail(email)) {
-      emailError.textContent = 'Please enter a valid email address.';
-      valid = false;
-    } else {
-      emailError.textContent = '';
-    }
-  
-    if (!validatePhoneNumber(phoneNumber)) {
-      phoneError.textContent = 'Please enter a valid 10-digit phone number.';
-      valid = false;
-    } else {
-      phoneError.textContent = '';
-    }
-
-    if (!validateName(nameF)) {
-      fNameError.textContent = 'Please enter a valid name. Only letters, spaces, hyphens, and apostrophes are allowed.';
-      valid = false;
-    } else {
-      fNameError.textContent = '';
-    }
-  
-    if (!validatePhoneNumber(phoneNumberF)) {
-      fPhoneError.textContent = 'Please enter a valid 10-digit phone number.';
-      valid = false;
-    } else {
-      fPhoneError.textContent = '';
-    }
-
-    if (!validateName(nameM)) {
-      mNameError.textContent = 'Please enter a valid name. Only letters, spaces, hyphens, and apostrophes are allowed.';
-      valid = false;
-    } else {
-      mNameError.textContent = '';
-    }
-  
-    if (!validatePhoneNumber(phoneNumberM)) {
-      mPhoneError.textContent = 'Please enter a valid 10-digit phone number.';
-      valid = false;
-    } else {
-      mPhoneError.textContent = '';
-    }
-  
-    if (valid) {
+    if (isValid) {
+      localStorage.clear();
       const formData = {
         'photo': uploadedImage,
         'regNum': document.getElementById('reg').value.trim(),
-        'name': name,
-        'phoneNumber': phoneNumber,
-        'email': email,
+        'name': document.getElementById('name').value.trim(),
+        'phoneNumber': document.getElementById('phone').value.trim(),
+        'email': document.getElementById('email').value.trim(),
         'dob': document.getElementById('dob').value,
         'gender': form.querySelector('input[name="gender"]:checked').value,
         'state': document.getElementById('state').value.trim(),
         'city': document.getElementById('city').value.trim(),
         'degree': document.getElementById('degree').value,
         'major': major.value === 'Other' ? otherMajorInput.value.trim() : major.value,
-        'fatherName': nameF,
-        'fatherPhone': phoneNumberF,
-        'motherName': nameM,
-        'motherPhone': phoneNumberM
+        'fatherName': document.getElementById('fName').value.trim(),
+        'fatherPhone': document.getElementById('fPhone').value.trim(),
+        'motherName': document.getElementById('mName').value.trim(),
+        'motherPhone': document.getElementById('mPhone').value.trim()
       };
 
       for (let[key, value] of Object.entries(formData)) {
         localStorage.setItem(key, value);
       }
-
     } else {
       event.preventDefault();
     }
