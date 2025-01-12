@@ -1,10 +1,12 @@
-function goBack() {
-    window.history.back();
-  }
+function newForm() {
+  sessionStorage.clear();
+  localStorage.clear();
+  window.location.href = "index.html";
+}
 
-  function printPage() {
+function printPage() {
     window.print();
-  }
+}
 
 function downloadPDF() {
     const doc = new jspdf.jsPDF();
@@ -16,7 +18,7 @@ function downloadPDF() {
     const photo = localStorage.getItem("photo");
     if (photo) {
         try {
-          doc.addImage(photo, 'JPEG', 75, 30, 50, 50);
+          doc.addImage(photo, 'JPEG', 75, 30, 60, 60);
         } catch (e) {
             console.error('Error adding photo to PDF:', e);
         }
