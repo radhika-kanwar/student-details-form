@@ -78,11 +78,13 @@
         <div class="form-group">
           <label for="state" class="required">State:</label>
           <input type="text" name="state" id="state" required />
+          <span id="stateError" class="error-message"></span>
         </div>
 
         <div class="form-group">
           <label for="city" class="required">City:</label>
           <input type="text" name="city" id="city" required />
+          <span id="cityError" class="error-message"></span>
         </div>
 
         <div class="form-group">
@@ -117,7 +119,7 @@
       </fieldset>
 
       <fieldset>
-        <legend>Parents Information</legend>
+        <legend>Parent Information</legend>
         <div class="form-group">
           <label for="fName" class="required">Father's Name:</label>
           <input type="text" name="fName" id="fName" required />
