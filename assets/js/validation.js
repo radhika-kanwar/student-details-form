@@ -66,6 +66,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (major.value === 'Other') {
       othermajorDiv.style.display = 'block';
       otherMajorInput.required = true;
+      updateProgress();
     } else {
       othermajorDiv.style.display = 'none';
       otherMajorInput.required = false;
@@ -81,8 +82,6 @@ document.addEventListener('DOMContentLoaded', function () {
   otherMajorInput.addEventListener('input', function() {
     updateProgress();
   });
-
-  major.addEventListener('change', toggleOthermajor);
 
   function validateRegistrationNumber(reg) {
     const regPattern = /^[A-Z]{2}\d{9}$/;
@@ -118,6 +117,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     
     return age >= minAge && age <= maxAge;
+  }
+
+  function validatePlace(place) {
+    const placePattern = /^[0-9]*[A-Za-z\s]+([A-Za-z0-9\s'-]*[A-Za-z])?$/;
+    return placePattern.test(place) && place.length <= 50;
   }
 
   let uploadedImage = null;
@@ -203,7 +207,16 @@ document.addEventListener('DOMContentLoaded', function () {
         break;
       case 'dob':
         if (!validateDOB(field.value.trim())) {
-          errorElement.textContent = 'Invalid age.';
+          errorElement.textContent = 'Please enter a valid date of birth. Age must be between 4 and 100 years old.';
+          return false;
+        } else {
+          errorElement.textContent = '';
+        }
+        break;
+      case 'state':
+      case 'city':
+        if (!validatePlace(field.value.trim())) {
+          errorElement.textContent = 'Please enter a valid name. Only 50 characters are allowed.';
           return false;
         } else {
           errorElement.textContent = '';
