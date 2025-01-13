@@ -18,7 +18,7 @@ function downloadPDF() {
     const photo = localStorage.getItem("photo");
     if (photo) {
         try {
-          doc.addImage(photo, 'JPEG', 75, 30, 60, 60);
+          doc.addImage(photo, 75, 30, 60, 60);
         } catch (e) {
             console.error('Error adding photo to PDF:', e);
         }
@@ -61,6 +61,7 @@ function downloadPDF() {
     doc.text(`Generated on: ${date}`, 20, 292);
     
     doc.save('student_information.pdf');
+    alert('PDF creation successful!');
 }
 
 document.addEventListener("DOMContentLoaded", function () {
