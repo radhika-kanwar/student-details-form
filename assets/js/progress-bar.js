@@ -37,8 +37,8 @@ function updateProgress() {
         progressBar.style.backgroundColor = '#ff6b6b';
         progressText.style.color = '#ff6b6b';
     } else if (progress < 66) {
-        progressBar.style.backgroundColor = '#ffd93d';
-        progressText.style.color = '#ffd93d';
+        progressBar.style.backgroundColor = '#e2b400';
+        progressText.style.color = '#e2b400';
     } else {
         progressBar.style.backgroundColor = '#008080';
         progressText.style.color = '#008080';
