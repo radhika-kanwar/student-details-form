@@ -171,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function () {
     switch(field.id) {
       case 'reg':
         if (!validateRegistrationNumber(field.value.trim())) {
-          errorElement.textContent = 'Please enter a valid registration number. Example: GF2023456789';
+          errorElement.textContent = 'Please enter a valid registration number. Example: GF202345678';
           return false
         } else {
           errorElement.textContent = '';
